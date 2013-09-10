@@ -299,7 +299,7 @@ can.Observe.prototype.__convert = function(prop, value){
 		
 	if(Class.attributes){
 		// the type of the attribute
-		type = Class.attributes[prop];
+		type = Class.attributes[prop] || Class.attributes['*'];
 		converter = Class.convert[type] || Class.convert['default'];
 	}
 		
@@ -372,7 +372,7 @@ can.Observe.prototype.serialize = function(attrName, stack) {
 			where[name] = val.attr('id');
 		} 
 		else {
-			type = Class.attributes ? Class.attributes[name] : 0;
+			type = Class.attributes ? (Class.attributes[name] || Class.attributes['*']) : 0;
 			converter = Class.serialize ? Class.serialize[type] : 0;
 
 			// if the value is an object, and has a attrs or serialize function
